@@ -1,0 +1,63 @@
+{
+  "incidents": [
+    {
+      "incidentType": "goal",
+      "isHome": true,
+      "player": {"name": "Mueller", "id": 1001},
+      "time": 15,
+      "homeScore": 1,
+      "awayScore": 0,
+      "incidentClass": "regular"
+    },
+    {
+      "incidentType": "drinkingBreak",
+      "isHome": null,
+      "time": 22,
+      "incidentClass": "drinkingBreak"
+    },
+    {
+      "incidentType": "goal",
+      "isHome": false,
+      "player": {"name": "Pulisic", "id": 2001},
+      "time": 35,
+      "homeScore": 1,
+      "awayScore": 1,
+      "incidentClass": "regular"
+    },
+    {
+      "incidentType": "varDecision",
+      "isHome": null,
+      "time": 42,
+      "incidentClass": "penaltyNotAwarded"
+    },
+    {
+      "incidentType": "card",
+      "cardType": "yellow",
+      "isHome": false,
+      "player": {"name": "Adams", "id": 2002},
+      "time": 55
+    },
+    {
+      "incidentType": "substitution",
+      "isHome": true,
+      "playerIn": {"name": "Havertz", "id": 1002},
+      "playerOut": {"name": "Gnabry", "id": 1003},
+      "time": 66
+    },
+    {
+      "incidentType": "drinkingBreak",
+      "isHome": null,
+      "time": 67,
+      "incidentClass": "drinkingBreak"
+    },
+    {
+      "incidentType": "goal",
+      "isHome": true,
+      "player": {"name": "Havertz", "id": 1002},
+      "time": 78,
+      "homeScore": 2,
+      "awayScore": 1,
+      "incidentClass": "regular"
+    }
+  ]
+}
