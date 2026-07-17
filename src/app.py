@@ -43,7 +43,8 @@ _STAGE_PT = {
     "group g": "GRUPO G", "group h": "GRUPO H", "group i": "GRUPO I",
     "group j": "GRUPO J", "group k": "GRUPO K", "group l": "GRUPO L",
     "round of 32": "RODADA DE 32", "round of 16": "OITAVAS DE FINAL",
-    "quarter-finals": "QUARTAS DE FINAL", "semi-finals": "SEMIFINAIS",
+    "quarter-finals": "QUARTAS DE FINAIS", "quarterfinals": "QUARTAS DE FINAIS",
+    "semi-finals": "SEMI FINAIS", "semifinals": "SEMI FINAIS",
     "final": "FINAL", "third place play-off": "DISPUTA DO 3º LUGAR",
     "third place": "DISPUTA DO 3º LUGAR",
 }

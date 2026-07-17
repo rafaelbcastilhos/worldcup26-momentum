@@ -390,10 +390,19 @@ def distribution_chart(df: pl.DataFrame, stoppage_type: str) -> go.Figure:
         hovertemplate="Δ: %{x:.1f}<br>Contagem: %{y}<extra></extra>",
     ))
     fig.add_vline(x=0, line_color=ZERO_LINE, line_width=2)
-    fig.add_vline(x=mean_val, line_dash="dash", line_color=color, line_width=2,
-                  annotation_text=f" média: {mean_val:.1f}",
-                  annotation_font_size=11, annotation_font_color=color,
-                  annotation_position="top right")
+    fig.add_shape(
+        type="line", x0=mean_val, x1=mean_val, y0=0, y1=1,
+        xref="x", yref="paper",
+        line={"dash": "dash", "color": color, "width": 2},
+    )
+    fig.add_annotation(
+        x=mean_val, y=1.0, xref="x", yref="paper",
+        text=f"média: {mean_val:.1f}",
+        showarrow=False,
+        font={"size": 11, "color": color},
+        xanchor="left", yanchor="bottom",
+        yshift=4,
+    )
 
     fig.update_layout(**_base_layout(
         title={"text": f"Distribuição de Δ Momentum — <b>{label}</b><br>"
