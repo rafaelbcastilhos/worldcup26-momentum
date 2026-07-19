@@ -12,6 +12,7 @@ PROCESSED = DATA / "processed"
 
 SNAPSHOTS = ROOT / "snapshots"
 SITE = ROOT / "site"
+DOCS = ROOT / "docs"
 FIXTURES = ROOT / "tests" / "fixtures"
 
 RAW_SOFASCORE = RAW / "sofascore"

@@ -152,7 +152,7 @@ def _intro_block(n_matches: int, n_stoppages: int) -> html.Div:
         style={"marginBottom": "48px"},
         children=[
             html.H1(
-                "Pausas de jogo e momentum",
+                "As pausas para hidratação realmente quebram o ritmo?",
                 style={"fontSize": "24px", "fontWeight": "700", "color": _INK,
                        "margin": "0 0 6px", "lineHeight": "1.25"},
             ),
@@ -163,7 +163,7 @@ def _intro_block(n_matches: int, n_stoppages: int) -> html.Div:
             html.P([
                 f"Em {n_matches} partidas analisadas, detectamos ",
                 html.Strong(f"{n_stoppages} pausas de jogo", style=s),
-                " — hidratação obrigatória e revisões de VAR. A pergunta é simples: "
+                ", hidratação obrigatória e revisões de VAR. A pergunta é simples: "
                 "quando uma equipe está no controle, a interrupção quebra o ritmo de quem domina?",
             ], style=p),
             html.Div(
@@ -174,7 +174,7 @@ def _intro_block(n_matches: int, n_stoppages: int) -> html.Div:
                 children=[
                     html.P([
                         "O SofaScore atribui um índice de momentum minuto a minuto, oscilando entre −100 e +100. "
-                        "Para cada parada, medimos a média dos 5 minutos antes e dos 5 depois — excluindo o minuto exato. "
+                        "Para cada parada, medimos a média dos 5 minutos antes e dos 5 depois, excluindo o minuto exato. "
                         "O ", html.Strong("Δ Momentum", style={**s, "fontSize": "13.5px"}),
                         " é a diferença pós menos pré, sempre da perspectiva do time que estava na frente. "
                         "Um Δ negativo significa que a parada interrompeu quem dominava.",
@@ -481,7 +481,7 @@ def build_layout() -> html.Div:
                         style={"borderTop": "1px solid #E5E0D8", "marginTop": "32px",
                                "padding": "24px 0", "color": "#B0A898", "fontSize": "12px"},
                         children=[
-                            "Fonte: SofaScore — janelas de 5 min pré e pós parada — "
+                            "Fonte: SofaScore, janelas de 5 min pré e pós parada, "
                             "IC 95% via bootstrap clusterizado por partida"
                         ],
                     ),
@@ -740,7 +740,19 @@ def update_modal(match_id, momentum_data, stoppages_data):
 def update_distribution(stoppage_type, stoppages_data):
     if not stoppage_type or not stoppages_data:
         return go.Figure()
-    return distribution_chart(pl.DataFrame(stoppages_data), stoppage_type)
+    full_df = pl.DataFrame(stoppages_data)
+    sub_all = (
+        full_df.drop_nulls(["momentum_delta", "momentum_pre_5min_mean"])
+               .filter(pl.col("momentum_pre_5min_mean") > 0)
+               .filter(pl.col("stoppage_type").is_in(list(ACTIVE_TYPES)))
+    )
+    x_range, bin_size = None, None
+    if not sub_all.is_empty():
+        vals = sub_all["momentum_delta"].to_list()
+        xmin, xmax = min(vals), max(vals)
+        x_range = (xmin, xmax)
+        bin_size = (xmax - xmin) / 22
+    return distribution_chart(full_df, stoppage_type, x_range=x_range, bin_size=bin_size)
 
 
 if __name__ == "__main__":
