@@ -1,0 +1,20 @@
+{
+  "n_matches": 103,
+  "n_stoppage_rows": 512,
+  "n_stoppages": 256,
+  "by_type": {
+    "hydration": {
+      "n_rows": 412,
+      "n_on_top": 206,
+      "on_top_mean_delta": -10.9773,
+      "on_top_std_delta": 20.0024
+    },
+    "var": {
+      "n_rows": 86,
+      "n_on_top": 42,
+      "on_top_mean_delta": -16.1876,
+      "on_top_std_delta": 24.1124
+    }
+  },
+  "date": "2026-07-20"
+}
